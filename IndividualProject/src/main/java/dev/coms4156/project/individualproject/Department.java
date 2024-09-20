@@ -84,7 +84,7 @@ public class Department implements Serializable {
    * Creates and adds a new course to the department's course selection.
    *
    * @param courseId           The ID of the new course.
-   * @param instructorName     The name of the instructor teaching the course.
+   * @param instructorName     The name of the instructor intructing the course.
    * @param courseLocation     The location where the course is held.
    * @param courseTimeSlot     The time slot of the course.
    * @param capacity           The maximum number of students that can enroll in the course.

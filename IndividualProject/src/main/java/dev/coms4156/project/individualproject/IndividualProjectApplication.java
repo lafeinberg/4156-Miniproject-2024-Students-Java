@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  * <p>
  * DO NOT MODIFY ANYTHING BELOW THIS POINT WITH REGARD TO FUNCTIONALITY
- * YOU MAY MAKE STYLE/REFACTOR MODIFICATIONS AS NEEDED
+ * YOU MAY MAKE STYLE/REFACTOR MODIFICATIONS AS NEEDED.
  * </p>
  */
 @SpringBootApplication

@@ -505,7 +505,6 @@ public class RouteController {
     }
   }
 
-
   /**
    * Attempts to change the location for a course.
    *

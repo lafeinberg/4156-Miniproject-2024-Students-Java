@@ -86,7 +86,7 @@ public class MyFileDatabase {
   /**
    * Returns a string representation of the database.
    *
-   * @return a string representation of the database
+   * @return a string representation of the database.
    */
   @Override
   public String toString() {
