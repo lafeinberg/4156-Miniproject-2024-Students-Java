@@ -19,7 +19,7 @@ public class MyFileDatabaseUnitTests {
   //Tests will go here
 
   /** 
-   * Tester file database variable 
+   * Tester file database variable.
    * */
   public static MyFileDatabase testDatabase;
 }
