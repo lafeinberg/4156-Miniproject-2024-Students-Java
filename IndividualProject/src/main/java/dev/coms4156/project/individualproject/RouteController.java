@@ -626,6 +626,7 @@ public class RouteController {
       return handleException(e);
     }
   }
+  
 
   private ResponseEntity<?> handleException(Exception e) {
     if (logger.isLoggable(Level.SEVERE)) {
