@@ -23,9 +23,6 @@ public class RouteControllerUnitTests {
    */
   @BeforeEach
   public void setup() {
-    String[] times = {"11:40-12:55", "4:10-5:25", "10:10-11:25", "2:40-3:55"};
-    String[] locations = {"417 IAB", "309 HAV", "301 URIS"};
-
     MockitoAnnotations.openMocks(this);
 
     departmentMapping = new HashMap<>();
@@ -45,6 +42,7 @@ public class RouteControllerUnitTests {
     Department wgsDept = new Department("WGS", wgsCourses, "Peggy Elsberg", 800);
     departmentMapping.put("Peggy Elsberg", wgsDept);
 
+    String[] locations = {"417 IAB", "309 HAV", "301 URIS"};
     Map<String, Course> chemCourses = new HashMap<>();
     chemCourses.put("1403", new Course("Ruben M Savizky", locations[1], "6:10-7:25", 120));
     chemCourses.put("1500", new Course("Joseph C Ulichny", "302 HAV", "6:10-9:50", 46));
@@ -52,6 +50,8 @@ public class RouteControllerUnitTests {
     Department chemDept = new Department("CHEM", chemCourses, "Laura J. Kaufman", 250);
     departmentMapping.put("CHEM", chemDept);
 
+
+    String[] times = {"11:40-12:55", "4:10-5:25", "10:10-11:25", "2:40-3:55"};
     Map<String, Course> physCourses = new HashMap<>();
     physCourses.put("1001", new Course("Szabolcs Marka", "301 PUP", times[3], 150));
     physCourses.put("1201", new Course("Eric Raymer", "428 PUP", times[3], 145));
@@ -97,25 +97,25 @@ public class RouteControllerUnitTests {
   }
 
   @Test
-  public void RetrieveCourseTestDNE() {
+  public void retrieveCourseTest1() {
     ResponseEntity<?> response = routeController.retrieveCourse("PHYS", 1000);
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
   }
 
   @Test
-  public void RetrieveCourseTestDNE2() {
+  public void retrieveCourseTest2() {
     ResponseEntity<?> response = routeController.retrieveCourse("IEOR", 9);
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
   }
 
   @Test 
-  public void RetrieveCoursesTestExistsInMultipleDepartments() {
+  public void retrieveCoursesTestExistsWorks() {
     ResponseEntity<?> response = routeController.retrieveCourses(1004);
     assertEquals(HttpStatus.OK, response.getStatusCode()); 
   }
 
   @Test
-  public void RetrieveCoursesTestNoCourses() {
+  public void retrieveCoursesTestNoCourses() {
     ResponseEntity<?> response = routeController.retrieveCourses(9);
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
   }

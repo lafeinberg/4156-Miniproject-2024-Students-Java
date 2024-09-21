@@ -563,12 +563,12 @@ public class RouteController {
       String rep = "Couses found: ";
       int courseCount = 0;
 
-      for(String currDeptCode: departmentMapping.keySet()){
+      for (String deptCode : departmentMapping.keySet()) {
         boolean doesCourseExists;
-        doesCourseExists = retrieveCourse(currDeptCode, courseCode).getStatusCode() == HttpStatus.OK;
-        if(doesCourseExists){
+        doesCourseExists = retrieveCourse(deptCode, courseCode).getStatusCode() == HttpStatus.OK;
+        if (doesCourseExists) {
           Map<String, Course> coursesMapping;
-          coursesMapping = departmentMapping.get(currDeptCode).getCourseSelection();
+          coursesMapping = departmentMapping.get(deptCode).getCourseSelection();
 
           String courseForDeptString = coursesMapping.get(Integer.toString(courseCode)).toString();
 
@@ -599,7 +599,7 @@ public class RouteController {
    *                       code in tune with what has happened.
    */
   @PatchMapping(value = "/enrollStudentInCourse", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> enrolStudentInCourse(@RequestParam(value = "deptCode") String deptCode, 
+  public ResponseEntity<?> enrollStudentInCourse(@RequestParam(value = "deptCode") String deptCode, 
       @RequestParam(value = "courseCode") int courseCode) {
     try {
       boolean doesCourseExists;
@@ -635,8 +635,6 @@ public class RouteController {
     return new ResponseEntity<>("An Error has occurred", HttpStatus.OK);
   }
 
-    /** Logger for stylistic changes */
-    private static final Logger logger = Logger.getLogger(
-      MyFileDatabase.class.getName()
-    );
+  /** Logger for stylistic changes. */
+  private static final Logger logger = Logger.getLogger(MyFileDatabase.class.getName());
 }
