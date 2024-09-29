@@ -577,7 +577,7 @@ public class RouteController {
       }
 
       if (courseCount > 0) {
-        rep.setLength(rep.length()-2);
+        rep.setLength(rep.length() - 2);
         return new ResponseEntity<>(rep, HttpStatus.OK);
       } else {
         return new ResponseEntity<>("No courses found.", HttpStatus.NOT_FOUND);
