@@ -554,7 +554,7 @@ public class RouteController {
    *                       with the entered course code and a HTTP 200 response or, and 
    *                       appreociate message indicating the proper reponse..
    */
-  @PatchMapping(value = "/retrieveCourses", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/retrieveCourses", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> retrieveCourses(@RequestParam(value = "courseCode") int courseCode) {
     try {
       Map<String, Department> departmentMapping;
