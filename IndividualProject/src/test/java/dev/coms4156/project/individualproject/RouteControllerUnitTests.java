@@ -92,6 +92,50 @@ public class RouteControllerUnitTests {
   }
 
   @Test
+  public void testChangeCourseTecher() {
+    ResponseEntity<?> response = routeController.changeCourseTeacher("COMS", 1004, "Kamala Harris");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Attributed was updated successfully.", response.getBody());
+  }
+
+  @Test
+  public void testChangeCourseTecherFalse() {
+    ResponseEntity<?> response = routeController.changeCourseTeacher("COMS", 3005, "Kamala Harris");
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+
+  @Test
+  public void testChangeCourseTime() {
+    ResponseEntity<?> response = routeController.changeCourseTime("COMS", 1004, "5:00am-5:00pm");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Attributed was updated successfully.", response.getBody());
+  }
+
+  @Test
+  public void testChangeCourseTimeFalse() {
+    ResponseEntity<?> response = routeController.changeCourseTime("COMS", 3005, "5:00am-5:00pm");
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+
+  @Test
+  public void changeCourseLocTest() {
+    ResponseEntity<?> response = routeController.changeCourseLocation("COMS", 1004, "BAR 301");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Attributed was updated successfully.", response.getBody());
+  }
+
+
+  @Test
+  public void changeCourseLocFail() {
+    ResponseEntity<?> response = routeController.changeCourseLocation("COMS", 3005, "BAR 301");
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+
+
+  @Test
   public void enrollStudentInCourseTestBadReqest() {
     ResponseEntity<?> response = routeController.enrollStudentInCourse("COMS", 1004);
     assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode()); 
@@ -102,6 +146,76 @@ public class RouteControllerUnitTests {
     ResponseEntity<?> response = routeController.enrollStudentInCourse("COMS", 3134);
     assertEquals(HttpStatus.OK, response.getStatusCode()); 
   }
+
+  @Test
+  public void findCourseInstructorTest() {
+    ResponseEntity<?> response = routeController.findCourseInstructor("COMS", 1004);
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Adam Cannon is the instructor for the course.", response.getBody());
+  }
+
+  @Test
+  public void findCourseInstructorTestFail() {
+    ResponseEntity<?> response = routeController.findCourseInstructor("COMS", 3000);
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found.", response.getBody());
+  }
+
+  @Test
+  public void findCourseTimeTest() {
+    ResponseEntity<?> response = routeController.findCourseTime("COMS", 1004);
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("The course meets at: 11:40-12:55", response.getBody());
+  }
+
+  @Test
+  public void findCourseTimeTestFail() {
+    ResponseEntity<?> response = routeController.findCourseTime("COMS", 3000);
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+
+  @Test
+  public void findCourseLocationTest() {
+    ResponseEntity<?> response = routeController.findCourseLocation("COMS", 1004);
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("417 IAB is where the course is located.", response.getBody());
+  }
+
+  @Test
+  public void findCourseLocTestFail() {
+    ResponseEntity<?> response = routeController.findCourseLocation("COMS", 3000);
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+
+  @Test
+  public void addMajorToDeptTest() {
+    ResponseEntity<?> response = routeController.addMajorToDept("COMS");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+  }
+
+  @Test
+  public void removeMajorFromDept() {
+    ResponseEntity<?> response = routeController.removeMajorFromDept("COMS");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+  }
+
+
+  @Test
+  public void dropStudentFromCourseTest() {
+    ResponseEntity<?> response = routeController.dropStudent("COMS", 1004);
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Student has been dropped.", response.getBody());
+  }
+
+  @Test
+  public void dropStudentFromCourseFailTest() {
+    ResponseEntity<?> response = routeController.dropStudent("COMS", 2020);
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("Course Not Found", response.getBody());
+  }
+  
 
   @Test
   public void retrieveCourseTest1() {
