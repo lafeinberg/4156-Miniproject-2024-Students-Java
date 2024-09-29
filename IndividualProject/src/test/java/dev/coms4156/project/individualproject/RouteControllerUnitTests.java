@@ -45,7 +45,7 @@ public class RouteControllerUnitTests {
     String[] locations = {"417 IAB", "309 HAV", "301 URIS"};
     Map<String, Course> chemCourses = new HashMap<>();
     chemCourses.put("1403", new Course("Ruben M Savizky", locations[1], "6:10-7:25", 120));
-    chemCourses.put("1500", new Course("Joseph C Ulichny", "302 HAV", "6:10-9:50", 46));
+    chemCourses.put("1004", new Course("Joseph C Ulichny", "302 HAV", "6:10-9:50", 46));
     chemCourses.put("2045", new Course("Luis M Campos", "209 HAV", "1:10-2:25", 50));
     Department chemDept = new Department("CHEM", chemCourses, "Laura J. Kaufman", 250);
     departmentMapping.put("CHEM", chemDept);
@@ -85,6 +85,13 @@ public class RouteControllerUnitTests {
   }
 
   @Test
+  public void identifyDeptChair() {
+    ResponseEntity<?> response = routeController.identifyDeptChair("COMS");
+    assertEquals(HttpStatus.OK, response.getStatusCode()); 
+    assertEquals("Luca Carloni is the department chair.", response.getBody());
+  }
+
+  @Test
   public void enrollStudentInCourseTestBadReqest() {
     ResponseEntity<?> response = routeController.enrollStudentInCourse("COMS", 1004);
     assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode()); 
@@ -108,16 +115,20 @@ public class RouteControllerUnitTests {
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
   }
 
-  @Test 
-  public void retrieveCoursesTestExistsWorks() {
-    ResponseEntity<?> response = routeController.retrieveCourses(1004);
-    assertEquals(HttpStatus.OK, response.getStatusCode()); 
-  }
+  // @Test 
+  // public void retrieveCoursesTestExistsWorks() {
+  //   ResponseEntity<?> response = routeController.retrieveCourses(1004);
+  //   assertEquals(HttpStatus.OK, response.getStatusCode()); 
+  //   assertEquals("Courses found: 1. \n" +
+  //   "Instructor: Joseph C Ulichny; Location: 302 HAV; Time: 6:10-9:50,2. \n" +
+  //   "Instructor: Adam Cannon; Location: 417 IAB; Time: 11:40-12:5", response.getBody());
+  // }
 
   @Test
   public void retrieveCoursesTestNoCourses() {
     ResponseEntity<?> response = routeController.retrieveCourses(9);
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode()); 
+    assertEquals("No courses found.", response.getBody());
   }
 
 

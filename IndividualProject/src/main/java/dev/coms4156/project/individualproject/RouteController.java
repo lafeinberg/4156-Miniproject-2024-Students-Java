@@ -252,7 +252,7 @@ public class RouteController {
         return new ResponseEntity<>(requestedCourse.getInstructorName() + " is the instructor for"
             + " the course.", HttpStatus.OK);
       } else {
-        return new ResponseEntity<>("Course Not Found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Course Not Found.", HttpStatus.NOT_FOUND);
       }
 
     } catch (Exception e) {
@@ -560,7 +560,7 @@ public class RouteController {
       Map<String, Department> departmentMapping;
       departmentMapping = IndividualProjectApplication.myFileDatabase.getDepartmentMapping();
 
-      String rep = "Couses found: ";
+      StringBuilder rep = new StringBuilder("Courses found: ");
       int courseCount = 0;
 
       for (String deptCode : departmentMapping.keySet()) {
@@ -572,12 +572,12 @@ public class RouteController {
 
           String courseForDeptString = coursesMapping.get(Integer.toString(courseCode)).toString();
 
-          rep = ++courseCount + ". " + courseForDeptString + ",";
+          rep.append(++courseCount + ". " + courseForDeptString + ",");
         }
       }
 
       if (courseCount > 0) {
-        rep = rep.substring(0, rep.length() - 1);
+        rep.setLength(rep.length()-2);
         return new ResponseEntity<>(rep, HttpStatus.OK);
       } else {
         return new ResponseEntity<>("No courses found.", HttpStatus.NOT_FOUND);

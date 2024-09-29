@@ -33,7 +33,7 @@ public class IndividualProjectApplication implements CommandLineRunner {
    *
    * @param args A {@code String[]} of any potential runtime args
    */
-  public void run(String[] args) {
+  public void run(String... args) {
     for (String arg : args) {
       if ("setup".equals(arg)) {
         myFileDatabase = new MyFileDatabase(1, "./data.txt");
