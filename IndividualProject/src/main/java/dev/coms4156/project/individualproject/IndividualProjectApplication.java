@@ -3,6 +3,8 @@ package dev.coms4156.project.individualproject;
 import jakarta.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

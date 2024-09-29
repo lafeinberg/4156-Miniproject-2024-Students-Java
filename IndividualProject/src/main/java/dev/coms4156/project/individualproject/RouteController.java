@@ -562,7 +562,7 @@ public class RouteController {
 
       StringBuilder rep = new StringBuilder("Courses found: ");
       int courseCount = 0;
-
+ 
       for (String deptCode : departmentMapping.keySet()) {
         boolean doesCourseExists;
         doesCourseExists = retrieveCourse(deptCode, courseCode).getStatusCode() == HttpStatus.OK;

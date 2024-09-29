@@ -1,17 +1,23 @@
 package dev.coms4156.project.individualproject;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents a file-based database containing department mappings.
  */
 public class MyFileDatabase {
+
+  private static final Logger logger = Logger.getLogger(
+      MyFileDatabase.class.getName()
+  );
 
   /**
    * Constructs a MyFileDatabase object and loads up the data structure with
@@ -24,11 +30,6 @@ public class MyFileDatabase {
     this.filePath = filePath;
     if (flag == 0) {
       this.departmentMapping = deSerializeObjectFromFile();
-      if (this.departmentMapping == null) {
-        this.departmentMapping = new HashMap<>();
-      }
-    } else {
-      this.departmentMapping = new HashMap<>();
     }
   }
 
@@ -49,14 +50,17 @@ public class MyFileDatabase {
   public Map<String, Department> deSerializeObjectFromFile() {
     try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filePath))) {
       Object obj = in.readObject();
-      if (obj instanceof HashMap) {
-        return (HashMap<String, Department>) obj;
+      if (obj instanceof Map) {
+        return (Map<String, Department>) obj;
       } else {
         throw new IllegalArgumentException("Invalid object type in file.");
       }
+    } catch (FileNotFoundException e) {
+      logger.log(Level.WARNING, "File not found: {0}", filePath);
+      return null; 
     } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-      return new HashMap<>();
+      logger.log(Level.SEVERE, "An exception occurred while saving contents to file", e);
+      return null;
     }
   }
 
@@ -67,9 +71,9 @@ public class MyFileDatabase {
   public void saveContentsToFile() {
     try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
       out.writeObject(departmentMapping);
-      System.out.println("Object serialized successfully.");
+      logger.log(Level.INFO, "Object serialized successfully.");
     } catch (IOException e) {
-      e.printStackTrace();
+      logger.log(Level.SEVERE, "An exception occurred while saving contents to file", e);
     }
   }
 
