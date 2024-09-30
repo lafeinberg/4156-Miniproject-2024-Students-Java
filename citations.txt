@@ -1,0 +1,39 @@
+I3:
+
+How to build a CI/CD pipeline with GitHub Actions in four simple steps:
+https://github.blog/enterprise-software/ci-cd/build-ci-cd-pipeline-github-actions-four-steps/
+
+An overview of App Engine:
+https://cloud.google.com/appengine/docs/an-overview-of-app-engine
+
+Install the gcloud CLI:
+https://cloud.google.com/sdk/docs/install
+
+app.yaml reference: 
+https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=java
+
+I2:
+
+To write tests using Columbia course directory:
+https://doc.sis.columbia.edu/
+
+
+I1:
+
+JavaDocs Style guide:
+https://google.github.io/styleguide/javaguide.html
+
+Unit testing instructions:
+https://aws.amazon.com/what-is/unit-testing/
+
+PMD instructions:
+https://pmd.github.io/
+
+Integrating mockito framework:
+https://site.mockito.org/
+
+Understanding Git:
+https://git-scm.com/docs
+
+
+
