@@ -56,6 +56,25 @@ To generate Jacoco report:
 mvn jacoco:report
 ```
 
+# Report Documentation
+## Style Check Report
+To generate the stylecheck, run
+```
+mvn checkstyle:check
+```
+This yields zero checkstyle violations or warnings: 
+<img src="https://github.com/lafeinberg/4156-Miniproject-2024-Students-Java/blob/main/stylecheck.png">
+
+## Jacoco Report
+To generate the jacoco report, run
+```
+mvn jacoco:report
+```
+This yields the following report:
+<img src="https://github.com/lafeinberg/4156-Miniproject-2024-Students-Java/blob/main/jacoco_report.png>
+
+We can see the branch coverage > %55
+
 # Development Process
 
 ## Static bug checking using PMD:
